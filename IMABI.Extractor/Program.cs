@@ -1,12 +1,10 @@
 ﻿using AngleSharp;
 using AngleSharp.Dom;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IMABI.Extractor
@@ -33,7 +31,7 @@ namespace IMABI.Extractor
         static async Task Main(string[] args)
         {
             Console.WriteLine("IMABI Extractor");
-            Console.WriteLine("Transform website version into pdf to study offline.");
+            Console.WriteLine("Transform website version into html/pdf to study offline.");
 
             string imabiWebsite = "https://www.imabi.net/tableofcontents.htm";
             string htmlCode = default(string);
@@ -42,8 +40,23 @@ namespace IMABI.Extractor
             IBrowsingContext context = BrowsingContext.New(config);
 
             try
-            {                
-                using (StreamWriter file = new StreamWriter(@"I:\ImabiWebsiteLessons.html"))
+            {
+                Console.WriteLine("Directory to save: ");
+                string dir = Console.ReadLine();
+
+                string currentDir = default(string);
+                if (!string.IsNullOrEmpty(dir) && Directory.Exists(dir))
+                {
+                    currentDir = string.Format("{0}\\{1}", dir, "IMABIWebsiteLessons.html");
+                }
+                else
+                {
+                    currentDir = string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "IMABIWebsiteLessons.html");
+                }
+
+                Console.WriteLine("File will be saved on: " + currentDir);
+
+                using (StreamWriter file = new StreamWriter(currentDir))
                 {
                     // Website request.                    
                     htmlCode = ReturnPage(imabiWebsite);
@@ -92,7 +105,7 @@ namespace IMABI.Extractor
                             Console.WriteLine(e.StackTrace);
                         }
                     }
-                    
+
                 }
 
             }
