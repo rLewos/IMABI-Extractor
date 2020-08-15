@@ -2,6 +2,7 @@
 using AngleSharp.Dom;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -41,19 +42,7 @@ namespace IMABI.Extractor
 
             try
             {
-                Console.WriteLine("Directory to save: ");
-                string dir = Console.ReadLine();
-
-                string currentDir = default(string);
-                if (!string.IsNullOrEmpty(dir) && Directory.Exists(dir))
-                {
-                    currentDir = string.Format("{0}\\{1}", dir, "IMABIWebsiteLessons.html");
-                }
-                else
-                {
-                    currentDir = string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "IMABIWebsiteLessons.html");
-                }
-
+                string currentDir = currentDir = string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "IMABIWebsiteLessons.html");
                 Console.WriteLine("File will be saved on: " + currentDir);
 
                 using (StreamWriter file = new StreamWriter(currentDir))
@@ -111,7 +100,7 @@ namespace IMABI.Extractor
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("\n" + e.Message);
                 Console.WriteLine(e.StackTrace);
             }
             
