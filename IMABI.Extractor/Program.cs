@@ -103,6 +103,8 @@ namespace IMABI.Extractor
                 Console.WriteLine("\n" + e.Message);
                 Console.WriteLine(e.StackTrace);
             }
+
+            Console.ReadKey();
             
         }
     }
