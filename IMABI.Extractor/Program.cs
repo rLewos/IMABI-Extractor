@@ -104,8 +104,8 @@ namespace IMABI.Extractor
                 Console.WriteLine(e.StackTrace);
             }
 
-            Console.ReadKey();
-            
+            Console.WriteLine("Press any button to exit...");
+            Console.ReadKey();            
         }
     }
 }
