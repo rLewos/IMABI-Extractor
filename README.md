@@ -1,2 +1,3 @@
 # IMABI-Extractor
-Extract lessons from IMABI Website and convert to HTML.
+Extract lessons content from IMABI Website and convert to HTML.
+After you can save to PDF file.
